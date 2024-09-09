@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Case Generator</title>
+</head>
+<body>
+    <h1>Generate Test Cases from Screenshots</h1>
+    <form method="post" action="/generate-instructions" enctype="multipart/form-data">
+        <label for="context">Context:</label>
+        <textarea id="context" name="context" rows="4" cols="50"></textarea><br><br>
+
+        <label for="images">Upload Screenshots:</label>
+        <input type="file" id="images" name="images" multiple><br><br>
+
+        <input type="submit" value="Generate Test Cases">
+    </form>
+
+    {% if instructions %}
+    <h2>Generated Test Cases:</h2>
+    <ul>
+        {% for instruction in instructions %}
+            <li>{{ instruction }}</li>
+        {% endfor %}
+    </ul>
+    {% elif error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
